@@ -5,7 +5,7 @@ commands:
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
     parameters:
       Workflow_ID:
-        type: String
+        Type: String
         default: ${CIRCLE_WORKFLOW_ID:0:7}
     steps:
       - run:
@@ -171,7 +171,6 @@ jobs:
             cd .circleci/ansible
             cat inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml
-            exit 1
       # Here's where you will add some code to rollback on failure    
 
 workflows:
