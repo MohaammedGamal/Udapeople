@@ -165,7 +165,7 @@ jobs:
             sudo apt upgrade
             sudo apt -y install software-properties-common
             sudo apt-add-repository ppa:ansible/ansible
-            sudo apt install ansible
+            sudo apt -y install ansible
       - add_ssh_keys:
           fingerprints:
             - "64:12:1f:0a:0e:7f:4f:f5:0d:f6:23:15:8b:0b:86:67"
