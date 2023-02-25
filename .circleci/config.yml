@@ -115,7 +115,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install tar utility
+          name: Installing tar and gzip
           command: |
             yum install -y tar gzip
       - run:
@@ -139,8 +139,8 @@ jobs:
           command: |
             aws ec2 describe-instances \
             --query 'Reservations[*].Instances[*].PublicIpAddress' \
-            --output text >> inventory.txt
-            cat inventory.txt
+            --output text >> .circleci/ansible/inventory.txt
+            cat .circleci/ansible/inventory.txt
       - persist_to_workspace:
           root: ~/
           paths:
