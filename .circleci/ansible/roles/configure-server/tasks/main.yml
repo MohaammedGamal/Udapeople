@@ -14,5 +14,5 @@
 - name: "installing pm2"
   become: true
   apt:
-    name: pm2
+    name: ["pm2"]
     global: yes
