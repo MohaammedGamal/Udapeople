@@ -220,8 +220,7 @@ jobs:
                 curl https://kvdb.io/YBDDPLDePXdYsyrUWzncYi/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi
       - destroy-environment
-
-     # Here's where you will add some code to rollback on failure      
+      - revert-migrations
 
 workflows:
   default:
