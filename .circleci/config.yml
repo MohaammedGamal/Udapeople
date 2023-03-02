@@ -281,7 +281,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - install_aws_clid
+      - install_aws_cli
       - install_ansible
       - install_nodejs
       - add_ssh_keys:
