@@ -216,7 +216,7 @@ jobs:
       - run:
           name: Send migration results to kvdb
           command: |
-            if grep -q "has been executed successfully." ~/project/.circleci/ansible/inventory.txt
+            if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
                 curl https://kvdb.io/NtjhdUyBVNZinBvMyuTLc3/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1'
             fi
