@@ -47,7 +47,7 @@ commands:
           command: |
             # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
             $SUCCESS = (curl --insecure https://kvdb.io/YBDDPLDePXdYsyrUWzncYi/migration_${CIRCLE_WORKFLOW_ID:0:7})
-            if(( $SUCCESS==1 )); 
+            if( $SUCCESS==1 ); 
             then
              cd ~/project/backend
              npm install
@@ -314,11 +314,11 @@ jobs:
             cd backend
             npm i
             npm run build
-            tar -C artifact.tar.gz .
+            cd ..
+            tar -C backend -czvf artifact.tar.gz .
             pwd
             ls -la
-            cd ..
-            cp backend/artifact.tar.gz .circleci/ansible/roles/deploy/files
+            cp artifact.tar.gz .circleci/ansible/roles/deploy/files
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
