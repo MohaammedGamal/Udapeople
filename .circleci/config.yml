@@ -318,7 +318,7 @@ jobs:
             tar -C backend -czvf artifact.tar.gz .
             pwd
             ls -la
-            cp artifact.tar.gz .circleci/ansible/roles/deploy/files
+            sudo cp /home/circleci/projectartifact.tar.gz .circleci/ansible/roles/deploy/files/
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
