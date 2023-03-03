@@ -1,17 +1,17 @@
 ---
 - name: create backend folder
   file: 
-    path: ~/backend
+    path: ~/backend_application
     state: directory
 
 - name: "un tar"
   unarchive:
-    src: artifact.tar.gz
-    dest: ~/backend
+    src: cd ~/backend artifact.tar.gz
+    dest: ~/backend_application
 
 - name: "installing dependencies"
   shell: |
-    cd ~/backend
+    cd ~/backend_application
     npm i
 
 - name: "executing"
