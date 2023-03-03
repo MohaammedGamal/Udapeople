@@ -6,7 +6,7 @@
 
 - name: "un tar"
   unarchive:
-    src: cd ../../../../ artifact.tar.gz
+    src: artifact.tar.gz
     dest: ~/backend_application
 
 - name: "installing dependencies"
