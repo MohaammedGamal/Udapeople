@@ -310,7 +310,10 @@ jobs:
             ls -la
 
             cd ..
-            sudo cp /home/circleci/project/backend/artifact.tar.gz .circleci/ansible/roles/deploy/files
+            sudo cp backend/artifact.tar.gz .circleci/ansible/roles/deploy/files
+
+            cd .circleci/ansible/roles/deploy/files
+            ls -la
       - run:
           name: Deploy backend
           command: |
