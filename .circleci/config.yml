@@ -301,7 +301,7 @@ jobs:
             npm install
       - run:
           name: package the backend
-          command: 
+          command: |
             cd backend
             npm i
             npm run build
