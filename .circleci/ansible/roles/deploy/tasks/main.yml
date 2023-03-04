@@ -4,6 +4,11 @@
     path: ~/backend_application
     state: directory
 
+- name: "getting path"
+  shell: |
+    pwd
+    ls -la
+
 - name: "un tar"
   unarchive:
     src: backend/artifact.tar.gz
