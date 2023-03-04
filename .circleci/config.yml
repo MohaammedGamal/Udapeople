@@ -46,7 +46,7 @@ commands:
           when: on_fail
           command: |
             # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
-            SUCCESS = $(curl --insecure https://kvdb.io/YBDDPLDePXdYsyrUWzncYi/migration_${CIRCLE_WORKFLOW_ID:0:7})
+            export SUCCESS = $(curl --insecure https://kvdb.io/YBDDPLDePXdYsyrUWzncYi/migration_${CIRCLE_WORKFLOW_ID:0:7})
             if(( $SUCCESS==1 )); 
             then
              cd ~/project/backend
@@ -347,11 +347,11 @@ jobs:
       - run:
           name: Backend smoke test.
           command: |
-            if curl "${API_URL}/api/status" | grep "ok"
+            if curl -s "${API_URL}/api/status" | grep "ok"
             then
-              return 0
+              exit 0
             else
-              return 1
+              exit 1
             fi
       - run:
           name: Frontend smoke test.
@@ -360,9 +360,9 @@ jobs:
             echo ${URL} 
             if curl -s ${URL} | grep "Welcome"
             then
-              return 1
+              exit 1
             else
-              return 1
+              exit 1
             fi
 
       - destroy-environment
