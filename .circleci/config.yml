@@ -388,6 +388,8 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - install_aws_cli
+      - install_nodejs
       - run:
           name: Save Old Workflow ID to kvdb
           command: |
