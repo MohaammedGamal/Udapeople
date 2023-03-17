@@ -26,10 +26,10 @@
   apt:
     autoremove: yes
 
-- name: "Install npm and nodejs"
+- name: "installing nodejs"
   become: true
   apt:
-    name: ["npm", "nodejs"]
+    name: ["nodejs"]
     state: latest
     update_cache: yes
 
