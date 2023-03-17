@@ -51,6 +51,6 @@
 - name: check pm2 status
   become: true
   shell: |
-    pm2 describe "udapeople-backend"
+    pm2 describe "udapeople-${CIRCLE_WORKFLOW_ID:0:7"
   register: command_output_npm
 - debug: var=command_output_npm.stdout_lines
