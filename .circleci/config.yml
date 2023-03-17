@@ -348,12 +348,12 @@ jobs:
             --output text)
             export API_URL="http://${BACKEND_IP}:3030"
             echo "${API_URL}"  #   curl -s ${API_URL}/api/status -v 
-            if curl -s "${API_URL}/api/status" | grep "ok"
-            then
-              exit 0
-            else
-              exit 1
-            fi   
+            if curl "${API_URL}/api/status" | grep "ok"
+              then
+                return 0
+              else
+                return 1
+              fi
       - run:
           name: Frontend smoke test.
           command: |
@@ -388,6 +388,7 @@ workflows:
       #     requires:
       #       - build-backend
       - deploy-infrastructure:
+          # requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           # requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           filters:
             branches:
