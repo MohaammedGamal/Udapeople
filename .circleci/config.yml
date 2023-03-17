@@ -418,7 +418,7 @@ jobs:
       - install_aws_cli
       # - install_nodejs
       - run:
-          name: Get old stack workflow id
+          name: Get old stack workflow id / delete old stacks and files
           command: |
             export OldWorkflowID=$(curl --insecure "https://kvdb.io/CiFD4WGMWTBxtgguCJy7CW/old_workflow_id")
             echo OldWorkflowID: "${OldWorkflowID}"
@@ -427,10 +427,7 @@ jobs:
             export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
             --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
             echo Stack names: "${STACKS[@]}"
-
-      - run:
-          name: Remove old stacks and files
-          command: |
+            
             if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
             then
               aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive
@@ -440,6 +437,7 @@ jobs:
             else
               echo "nothing there to delete ..."
             fi
+
 
 
 
