@@ -28,11 +28,11 @@
     ENVIRONMENT: production
     NODE_ENV: production
     TYPEORM_CONNECTION: postgres
-    TYPEORM_MIGRATIONS_DIR: ./src/migrations
-    TYPEORM_ENTITIES: ./src/modules/**/*.entity.ts
-    TYPEORM_MIGRATIONS: ./src/migrations/*.ts
+    TYPEORM_MIGRATIONS_DIR: ./migrations
+    TYPEORM_ENTITIES: ./modules/domain/**/*.entity{.ts,.js}
+    TYPEORM_MIGRATIONS: ./migrations/*.ts
     TYPEORM_HOST: postgres.clvf6huk69rs.us-east-1.rds.amazonaws.com
-    TYPEORM_PORT: 5432
+    TYPEORM_PORT: '5432'
     TYPEORM_USERNAME: postgres
     TYPEORM_PASSWORD: ProjectPassword
     TYPEORM_DATABASE: postgres
