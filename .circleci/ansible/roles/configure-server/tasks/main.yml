@@ -1,17 +1,43 @@
----
-- name: "adding nodejs"
-  become: true
-  shell: |
-    curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+# ---
+# - name: "adding nodejs"
+#   become: true
+#   shell: |
+#     curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 
-- name: "installing nodejs"
+# - name: "installing nodejs"
+#   become: true
+#   apt:
+#     name: ["nodejs"]
+#     state: latest
+#     update_cache: yes
+
+# - name: "installing pm2 globally"
+#   npm:
+#     name: pm2
+#     global: yes
+
+---
+- name: "Update apt packages"
   become: true
   apt:
-    name: ["nodejs"]
+    update_cache: yes
+
+- name: "Remove dependencies that are no longer required"
+  become: true
+  apt:
+    autoremove: yes
+
+- name: "Install npm and nodejs"
+  become: true
+  apt:
+    name: ["npm", "nodejs"]
     state: latest
     update_cache: yes
 
-- name: "installing pm2 globally"
+- name: "Install pm2"
+  become: true
   npm:
     name: pm2
     global: yes
+    production: yes
+    state: present

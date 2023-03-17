@@ -24,9 +24,33 @@
     cd ~/backend_application/dist
     pm2 stop default
     pm2 start main.js
+  environment:
+    ENVIRONMENT: production
+    NODE_ENV: production
+    TYPEORM_CONNECTION: postgres
+    TYPEORM_MIGRATIONS_DIR: ./src/migrations
+    TYPEORM_ENTITIES: ./src/modules/**/*.entity.ts
+    TYPEORM_MIGRATIONS: ./src/migrations/*.ts
+    TYPEORM_HOST: postgres.clvf6huk69rs.us-east-1.rds.amazonaws.com
+    TYPEORM_PORT: 5432
+    TYPEORM_USERNAME: postgres
+    TYPEORM_PASSWORD: ProjectPassword
+    TYPEORM_DATABASE: postgres
 
   register: execute_node
 
 - name: "print"
   debug:
     msg: "{{ execute_node.stdout_lines }}"
+
+- name: "Set pm2 start as service"
+  become: true
+  shell: |
+    env PATH=$PATH:/usr/local/bin pm2 startup -u ubuntu
+
+- name: check pm2 status
+  become: true
+  shell: |
+    pm2 describe "udapeople-backend"
+  register: command_output_npm
+- debug: var=command_output_npm.stdout_lines
