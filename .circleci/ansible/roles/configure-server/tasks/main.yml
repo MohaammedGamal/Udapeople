@@ -16,7 +16,6 @@
 #     name: pm2
 #     global: yes
 
----
 - name: "Update apt packages"
   become: true
   apt:
